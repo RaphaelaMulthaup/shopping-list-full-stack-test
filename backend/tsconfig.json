@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "commonjs",
+    "lib": ["es2020"],
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    "strict": true,
+
+    "skipLibCheck": true,
+    "sourceMap": true,
+
+    "noImplicitReturns": true, // Warn when functions don't always return a value
+    "noUnusedLocals": true // Warn for unused variables/imports
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
