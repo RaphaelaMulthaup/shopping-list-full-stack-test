@@ -1,11 +1,16 @@
 import * as dotenv from "dotenv";
 import mongoose from "mongoose";
-import express from "express";
+import express, { Application } from "express";
+import cors from 'cors';
+import itemRoutes from './routes/itemRoutes';
 
 dotenv.config();
 
-const app = express(); //Initialize Express Server
+const app: Application = express(); //Initialize Express Server
 const port = process.env.PORT || 3000;
+app.use(cors());
+app.use(express.json());
+app.use('/items', itemRoutes);
 
 const connectDB = async () => {
   const mongoUri = process.env.MONGO_URI;

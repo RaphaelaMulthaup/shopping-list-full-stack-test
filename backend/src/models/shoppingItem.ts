@@ -1,7 +1,6 @@
-import { ObjectId } from "mongoose";
+import { Document } from "mongoose";
 
-export interface ShoppingItem {
-  _id: ObjectId;
+export interface ShoppingItem extends Document {
   name: string;
   bought: boolean;
   createdAt: Date;
