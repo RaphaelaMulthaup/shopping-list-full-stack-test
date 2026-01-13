@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import type { ShoppingItem } from "./models/shoppingItem";
 import { Container } from "@mui/material";
 import ItemList from "./components/ItemList";
+import AddItemForm from "./components/AddItemForm";
 // import './App.css'
 
 function App() {
@@ -25,10 +26,11 @@ function App() {
   }, []);
 
   return (
-    <Container maxWidth="sm">
+    <>
       <h1>Meine Einkaufsliste</h1>
       <ItemList items={items} />
-    </Container>
+      <AddItemForm onItemAdded={fetchItems} />
+    </>
   );
 }
 
