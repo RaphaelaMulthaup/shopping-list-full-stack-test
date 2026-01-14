@@ -3,7 +3,7 @@ import type { ShoppingItem } from "./models/shoppingItem";
 import { Container } from "@mui/material";
 import ItemList from "./components/ItemList";
 import AddItemForm from "./components/AddItemForm";
-// import './App.css'
+import './App.css'
 
 function App() {
   const [items, setItems] = useState<ShoppingItem[]>([]);

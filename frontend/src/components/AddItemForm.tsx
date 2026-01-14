@@ -1,5 +1,6 @@
 import { Box, TextField, Button } from '@mui/material';
 import React, { useState } from 'react';
+import AddIcon from '@mui/icons-material/Add';
 
 interface AddItemFormProps {
   onItemAdded: () => void;
@@ -47,7 +48,7 @@ const AddItemForm: React.FC<AddItemFormProps> = ({ onItemAdded }) => {
         type="submit"
         disabled={!name.trim()}
       >
-        Hinzufügen
+        <AddIcon fontSize='large'/>
       </Button>
     </Box>
   );
