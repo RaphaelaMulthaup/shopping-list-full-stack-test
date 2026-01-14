@@ -39,6 +39,21 @@ function App() {
     }
   };
 
+  const handleDeleteItem = async (id: string) => {
+    try {
+      const response = await fetch(`http://localhost:3000/items/${id}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        setItems((prevItems) => prevItems.filter((item) => item._id !== id));
+      } else {
+        console.error("Deletion on the server failed.");
+      }
+    } catch (error) {
+      console.error("Network error during deletion:", error);
+    }
+  };
+
   useEffect(() => {
     fetchItems();
   }, []);
@@ -46,7 +61,11 @@ function App() {
   return (
     <Container>
       <h1>Meine Einkaufsliste</h1>
-      <ItemList items={items} onToggle={handleUpdateItem} />
+      <ItemList
+        items={items}
+        onToggle={handleUpdateItem}
+        onDelete={handleDeleteItem}
+      />
       <AddItemForm onItemAdded={fetchItems} />
     </Container>
   );
