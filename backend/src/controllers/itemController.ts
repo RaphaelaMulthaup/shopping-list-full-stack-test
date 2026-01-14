@@ -14,33 +14,30 @@ export const createItem = async (
   try {
     const { name } = req.body;
     if (!name) {
-      // Wenn der Name fehlt, gib einen Fehler zurück
       return res.status(400).send('Name is required.');
     }
     
-    // Verwende dein ShoppingItemModel
     const newItem: ShoppingItem = new ShoppingItemModel({ name }); 
     await newItem.save();
-    res.status(201).json(newItem);
+    return res.status(201).json(newItem); // ⬅️ return hinzugefügt
   } catch (error) {
-    res.status(500).send('Server Error while creating item.');
+    return res.status(500).send('Server Error while creating item.'); // ⬅️ return hinzugefügt
   }
 };
 
 // --- 2. GET /items: Alle Items zurückgeben ---
 export const getAllItems = async (req: Request, res: Response) => {
   try {
-    // Verwende dein ShoppingItemModel
     const items: ShoppingItem[] = await ShoppingItemModel.find();
-    res.json(items);
+    return res.json(items); // ⬅️ return hinzugefügt
   } catch (error) {
-    res.status(500).send('Server Error while fetching items.');
+    return res.status(500).send('Server Error while fetching items.'); // ⬅️ return hinzugefügt
   }
 };
 
 // --- 3. PUT /items/:id: Status (bought) aktualisieren ---
 interface UpdateItemBody {
-    bought: boolean; // Wir aktualisieren das Feld 'bought'
+    bought: boolean; 
 }
 
 export const updateItemStatus = async (
@@ -49,16 +46,15 @@ export const updateItemStatus = async (
 ) => {
   try {
     const { id } = req.params;
-    const { bought } = req.body; // Holt den neuen 'bought'-Wert
+    const { bought } = req.body;
 
-    // Typ-Check für 'bought'
     if (typeof bought !== 'boolean') {
         return res.status(400).send('A valid "bought" status (boolean) is required.');
     }
     
     const updatedItem = await ShoppingItemModel.findByIdAndUpdate(
       id,
-      { bought }, // Aktualisiert das Feld 'bought'
+      { bought }, 
       { new: true }
     );
 
@@ -66,9 +62,9 @@ export const updateItemStatus = async (
       return res.status(404).send('Item not found.');
     }
 
-    res.json(updatedItem);
+    return res.json(updatedItem); // ⬅️ return hinzugefügt
   } catch (error) {
-    res.status(500).send('Server Error while updating item.');
+    return res.status(500).send('Server Error while updating item.'); // ⬅️ return hinzugefügt
   }
 };
 
@@ -76,15 +72,14 @@ export const updateItemStatus = async (
 export const deleteItem = async (req: Request<{ id: string }>, res: Response) => {
   try {
     const { id } = req.params;
-    // Verwende dein ShoppingItemModel
     const deletedItem = await ShoppingItemModel.findByIdAndDelete(id);
 
     if (!deletedItem) {
       return res.status(404).send('Item not found.');
     }
 
-    res.status(204).send(); 
+    return res.status(204).send(); // ⬅️ return hinzugefügt
   } catch (error) {
-    res.status(500).send('Server Error while deleting item.');
+    return res.status(500).send('Server Error while deleting item.'); // ⬅️ return hinzugefügt
   }
 };
