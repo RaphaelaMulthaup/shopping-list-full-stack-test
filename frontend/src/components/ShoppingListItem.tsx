@@ -4,9 +4,10 @@ import { Checkbox, ListItem, ListItemButton, ListItemIcon, ListItemText } from "
 
 interface ShoppingListItemProps {
   item: ShoppingItem;
+  onToggle: (item: ShoppingItem) => void;
 }
 
-const ShoppingListItem: React.FC<ShoppingListItemProps> = ({ item }) => {
+const ShoppingListItem: React.FC<ShoppingListItemProps> = ({ item, onToggle }) => {
   const labelId = `checkbox-list-label-${item._id}`;
 
   return (
@@ -16,7 +17,7 @@ const ShoppingListItem: React.FC<ShoppingListItemProps> = ({ item }) => {
     >
       <ListItemButton
         role="listitem"
-        // onClick={() => handleToggle(item)}
+        onClick={() => onToggle(item)}
       >
         <ListItemIcon>
           <Checkbox
@@ -33,7 +34,7 @@ const ShoppingListItem: React.FC<ShoppingListItemProps> = ({ item }) => {
         <ListItemText 
           id={labelId} 
           primary={item.name}
-          sx={{ textDecoration: item.bought ? 'line-through' : 'none' }}
+          sx={{ textDecoration: item.bought ? 'line-through' : 'none', color: item.bought ? 'gray' : 'inherit' }}
         />
       </ListItemButton>
     </ListItem>

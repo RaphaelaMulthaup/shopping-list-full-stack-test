@@ -1,6 +1,4 @@
-import { Document } from "mongoose";
-
-export interface ShoppingItem extends Document {
+export interface ShoppingItem {
   _id?: string;
   name: string;
   bought: boolean;

@@ -5,9 +5,10 @@ import ShoppingListItem from './ShoppingListItem';
 
 interface ItemListProps {
   items: ShoppingItem[];
+  onToggle: (item: ShoppingItem) => void;
 }
 
-const ItemList: React.FC<ItemListProps> = ({ items }) => {
+const ItemList: React.FC<ItemListProps> = ({ items, onToggle }) => {
   if (items.length === 0) {
     return <p>Deine Liste ist noch leer! Füge deinen ersten Artikel hinzu.</p>;
   }
@@ -17,7 +18,8 @@ const ItemList: React.FC<ItemListProps> = ({ items }) => {
       {items.map((item) => (
         <ShoppingListItem 
           key={item._id} 
-          item={item} 
+          item={item}
+          onToggle={onToggle}
         />
       ))}
     </List>

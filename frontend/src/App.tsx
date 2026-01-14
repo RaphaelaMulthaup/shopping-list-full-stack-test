@@ -21,16 +21,34 @@ function App() {
     }
   };
 
+  const handleUpdateItem = async (item: ShoppingItem) => {
+    try {
+      const response = await fetch(`http://localhost:3000/items/${item._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...item, bought: !item.bought }),
+      });
+      if (response.ok) {
+        const updatedItem = await response.json();
+        setItems((prevItems) =>
+          prevItems.map((i) => (i._id === updatedItem._id ? updatedItem : i))
+        );
+      }
+    } catch (error) {
+      console.error("Update error:", error);
+    }
+  };
+
   useEffect(() => {
     fetchItems();
   }, []);
 
   return (
-    <>
+    <Container>
       <h1>Meine Einkaufsliste</h1>
-      <ItemList items={items} />
+      <ItemList items={items} onToggle={handleUpdateItem} />
       <AddItemForm onItemAdded={fetchItems} />
-    </>
+    </Container>
   );
 }
 

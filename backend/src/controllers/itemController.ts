@@ -17,7 +17,7 @@ export const createItem = async (
       return res.status(400).send('Name is required.');
     }
     
-    const newItem: ShoppingItem = new ShoppingItemModel({ name }); 
+    const newItem = new ShoppingItemModel({ name });
     await newItem.save();
     return res.status(201).json(newItem); // ⬅️ return hinzugefügt
   } catch (error) {
