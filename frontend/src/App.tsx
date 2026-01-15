@@ -60,7 +60,7 @@ function App() {
 
   return (
     <Container className="main-container">
-      <div>
+      <div className="list-upper-area">
         <h1>Meine Einkaufsliste</h1>
         <ItemList
           items={items}

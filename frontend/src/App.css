@@ -40,3 +40,10 @@
     font-size: 2.5rem;
   }
 }
+
+.list-upper-area {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
