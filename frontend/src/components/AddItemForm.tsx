@@ -1,40 +1,40 @@
-import { Box, TextField, Button } from '@mui/material';
-import React, { useState } from 'react';
-import AddIcon from '@mui/icons-material/Add';
+import { Box, TextField, Button } from "@mui/material";
+import React, { useState } from "react";
+import AddIcon from "@mui/icons-material/Add";
+import { createShoppingItem } from '../services/itemService';
 
 interface AddItemFormProps {
+  /** Callback to refresh the list after a successful addition. */
   onItemAdded: () => void;
 }
 
+/**
+ * A form component to add new items to the shopping list.
+ * Features Material UI components and basic validation.
+ */
 const AddItemForm: React.FC<AddItemFormProps> = ({ onItemAdded }) => {
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
 
+  /**
+   * Handles form submission: validates, saves, and resets.
+   */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim()) return;
     try {
-      const response = await fetch('http://localhost:3000/items', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name }),
-      });
-
-      if (response.ok) {
-        setName('');
-        onItemAdded();
-      }
+      await createShoppingItem(name);
+      setName("");
+      onItemAdded();
     } catch (error) {
-      console.error('Netzwerkfehler:', error);
+      console.error("Network error:", error);
     }
   };
 
   return (
-    <Box 
-      component="form" 
-      onSubmit={handleSubmit} 
-      sx={{ display: 'flex', gap: 2, mb: 4, mt: 2 }}
+    <Box
+      component="form"
+      onSubmit={handleSubmit}
+      sx={{ display: "flex", gap: 2, mb: 4, mt: 2 }}
     >
       <TextField
         fullWidth
@@ -43,12 +43,8 @@ const AddItemForm: React.FC<AddItemFormProps> = ({ onItemAdded }) => {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <Button 
-        variant="contained" 
-        type="submit"
-        disabled={!name.trim()}
-      >
-        <AddIcon fontSize='large'/>
+      <Button variant="contained" type="submit" disabled={!name.trim()}>
+        <AddIcon fontSize="large" />
       </Button>
     </Box>
   );
