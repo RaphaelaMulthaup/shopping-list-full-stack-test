@@ -3,59 +3,57 @@ import type { ShoppingItem } from "./models/shoppingItem";
 import { Container } from "@mui/material";
 import ItemList from "./components/ItemList";
 import AddItemForm from "./components/AddItemForm";
+import { getShoppingItems, updateShoppingItem, deleteShoppingItem } from "./services/itemService";
 import "./App.css";
 
+/**
+ * Main Application Component.
+ * Manages the global state of the shopping list and coordinates service calls.
+ */
 function App() {
   const [items, setItems] = useState<ShoppingItem[]>([]);
 
-  const fetchItems = async () => {
+  /**
+   * Fetches all items from the service and updates the local state.
+   */
+  const loadItems = async () => {
     try {
-      const response = await fetch("http://localhost:3000/items");
-      if (!response.ok) {
-        throw new Error("Error retrieving data from the server.");
-      }
-      const data: ShoppingItem[] = await response.json();
+      const data = await getShoppingItems();
       setItems(data);
     } catch (error) {
       console.error("Could not load items:", error);
     }
   };
 
-  const handleUpdateItem = async (item: ShoppingItem) => {
+  /**
+   * Toggles the 'bought' status of an item via the service.
+   * @param {ShoppingItem} item - The item to be updated.
+   */
+  const handleToggle = async (item: ShoppingItem) => {
     try {
-      const response = await fetch(`http://localhost:3000/items/${item._id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...item, bought: !item.bought }),
-      });
-      if (response.ok) {
-        const updatedItem = await response.json();
-        setItems((prevItems) =>
-          prevItems.map((i) => (i._id === updatedItem._id ? updatedItem : i))
-        );
-      }
+      const updatedItem = await updateShoppingItem(item._id, { ...item, bought: !item.bought });
+      setItems((prev) => prev.map((i) => (i._id === updatedItem._id ? updatedItem : i)));
     } catch (error) {
       console.error("Update error:", error);
     }
   };
 
-  const handleDeleteItem = async (id: string) => {
+  /**
+   * Removes an item via the service and updates the state.
+   * @param {string} id - Unique ID of the item to delete.
+   */
+  const handleDelete = async (id: string) => {
     try {
-      const response = await fetch(`http://localhost:3000/items/${id}`, {
-        method: "DELETE",
-      });
-      if (response.ok) {
-        setItems((prevItems) => prevItems.filter((item) => item._id !== id));
-      } else {
-        console.error("Deletion on the server failed.");
-      }
+      await deleteShoppingItem(id);
+      setItems((prev) => prev.filter((item) => item._id !== id));
     } catch (error) {
-      console.error("Network error during deletion:", error);
+      console.error("Deletion failed:", error);
     }
   };
 
+  // Initial load
   useEffect(() => {
-    fetchItems();
+    loadItems();
   }, []);
 
   return (
@@ -64,11 +62,11 @@ function App() {
         <h1>Meine Einkaufsliste</h1>
         <ItemList
           items={items}
-          onToggle={handleUpdateItem}
-          onDelete={handleDeleteItem}
+          onToggle={handleToggle}
+          onDelete={handleDelete}
         />
-      </div>
-      <AddItemForm onItemAdded={fetchItems} />
+      </div>doc and clean code ShoppingListItem.tsx
+      <AddItemForm onItemAdded={loadItems} />
     </Container>
   );
 }

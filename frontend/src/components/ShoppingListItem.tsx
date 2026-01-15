@@ -22,7 +22,7 @@ interface ShoppingListItemProps {
 
 /**
  * A single item row within the shopping list.
- * Displays a checkbox for toggling status, the item name with ellipsis on overflow, 
+ * Displays a checkbox for toggling status, the item name with ellipsis on overflow,
  * and a delete action button.
  * * @param {ShoppingListItemProps} props - The component props.
  * @returns {JSX.Element} The rendered list item.
