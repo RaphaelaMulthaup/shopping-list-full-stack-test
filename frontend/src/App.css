@@ -6,7 +6,7 @@
   margin: 5dvh 0;
   border-radius: 10px;
   background-color: white;
-  padding: 0 32px !important;
+  padding: 0 36px !important;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
@@ -22,5 +22,21 @@
     border: unset;
     border-radius: unset;
     /* padding: 0 16px !important; */
+  }
+}
+
+@media (max-width: 550px) {
+  .main-container {
+    padding: 0 28px !important;
+  }
+}
+@media (max-width: 400px) {
+  .main-container {
+    padding: 0 16px !important;
+  }
+}
+@media (max-width: 520px) {
+  h1 {
+    font-size: 2.5rem;
   }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import type { ShoppingItem } from '../models/shoppingItem';
 import { List } from '@mui/material';
 import ShoppingListItem from './ShoppingListItem'; 
+import "./ItemList.css";
 
 interface ItemListProps {
   items: ShoppingItem[];
@@ -15,7 +16,7 @@ const ItemList: React.FC<ItemListProps> = ({ items, onToggle, onDelete }) => {
   }
     
   return (
-    <List>
+    <List className="item-list">
       {items.map((item) => (
         <ShoppingListItem 
           key={item._id} 
