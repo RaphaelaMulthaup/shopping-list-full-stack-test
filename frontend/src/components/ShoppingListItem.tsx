@@ -12,16 +12,27 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import "./ShoppingListItem.css";
 
 interface ShoppingListItemProps {
+  /** The shopping item object to be displayed. */
   item: ShoppingItem;
+  /** Callback function to toggle the completion status of the item. */
   onToggle: (item: ShoppingItem) => void;
+  /** Callback function to delete the item by its unique ID. */
   onDelete: (id: string) => void;
 }
 
+/**
+ * A single item row within the shopping list.
+ * Displays a checkbox for toggling status, the item name with ellipsis on overflow, 
+ * and a delete action button.
+ * * @param {ShoppingListItemProps} props - The component props.
+ * @returns {JSX.Element} The rendered list item.
+ */
 const ShoppingListItem: React.FC<ShoppingListItemProps> = ({
   item,
   onToggle,
   onDelete,
 }) => {
+  /** Unique ID for the accessibility labeling between checkbox and text. */
   const labelId = `checkbox-list-label-${item._id}`;
 
   return (
