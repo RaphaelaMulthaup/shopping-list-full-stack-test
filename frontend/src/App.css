@@ -1,3 +1,14 @@
-Container {
-    height: 100dvh;
+.main-container {
+    height: 90dvh;
+    max-height: 1500px;
+    max-width: 700px !important;
+    border: 1px solid black;
+    margin: 5dvh 0;
+    border-radius: 10px;
+    background-color: white;
+    padding: 0 32px !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

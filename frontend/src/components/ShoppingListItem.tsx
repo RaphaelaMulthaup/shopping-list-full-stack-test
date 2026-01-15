@@ -9,6 +9,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import "./ShoppingListItem.css";
 
 interface ShoppingListItemProps {
   item: ShoppingItem;
@@ -53,9 +54,15 @@ const ShoppingListItem: React.FC<ShoppingListItemProps> = ({
         <ListItemText
           id={labelId}
           primary={item.name}
-          sx={{
-            textDecoration: item.bought ? "line-through" : "none",
-            color: item.bought ? "gray" : "inherit",
+          slotProps={{
+            primary: {
+              noWrap: true,
+              sx: {
+                display: "block",
+                textDecoration: item.bought ? "line-through" : "none",
+                color: item.bought ? "gray" : "inherit",
+              },
+            },
           }}
         />
       </ListItemButton>

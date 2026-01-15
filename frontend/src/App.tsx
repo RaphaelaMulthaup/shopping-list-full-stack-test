@@ -3,7 +3,7 @@ import type { ShoppingItem } from "./models/shoppingItem";
 import { Container } from "@mui/material";
 import ItemList from "./components/ItemList";
 import AddItemForm from "./components/AddItemForm";
-import './App.css'
+import "./App.css";
 
 function App() {
   const [items, setItems] = useState<ShoppingItem[]>([]);
@@ -59,13 +59,15 @@ function App() {
   }, []);
 
   return (
-    <Container>
-      <h1>Meine Einkaufsliste</h1>
-      <ItemList
-        items={items}
-        onToggle={handleUpdateItem}
-        onDelete={handleDeleteItem}
-      />
+    <Container className="main-container">
+      <div>
+        <h1>Meine Einkaufsliste</h1>
+        <ItemList
+          items={items}
+          onToggle={handleUpdateItem}
+          onDelete={handleDeleteItem}
+        />
+      </div>
       <AddItemForm onItemAdded={fetchItems} />
     </Container>
   );
