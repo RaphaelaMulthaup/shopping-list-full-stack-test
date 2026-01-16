@@ -3,6 +3,7 @@ import {
   getAllItems,
   createItem,
   updateItemStatus,
+  validateBoughtStatus,
   deleteItem,
 } from '../controllers/itemController';
 
@@ -15,7 +16,7 @@ router.get('/', getAllItems);
 router.post('/', createItem);
 
 // Update the status of an item
-router.put('/:id', updateItemStatus);
+router.put('/:id', validateBoughtStatus, updateItemStatus);
 
 // Delete an item
 router.delete('/:id', deleteItem);
