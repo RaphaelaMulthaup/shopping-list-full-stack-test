@@ -57,32 +57,32 @@ docker run -d --name shopping-db -p 27017:27017 mongo
 ```
 
 ### 3. Backend Setup
-* 1. Navigate to the backend folder.
-* 2. Install dependencies:
+* Navigate to the backend folder.
+* Install dependencies:
 ```bash
 npm install
 ```
-* 3. Configure environment variables in a .env file:
+* Configure environment variables in a .env file:
 ```bash
 PORT=3000
 MONGO_URI=mongodb://localhost:27017/shoppinglist
 ```
-* 4. Start the development server:
+* Start the development server:
 ```bash
 npm run dev
 ```
 
 ### 4. Frontend Setup
-* 1. Navigate to the frontend folder.
-* 2. Install dependencies:
+* Navigate to the frontend folder.
+* Install dependencies:
 ```bash
 npm install
 ```
-* 3. Start the Vite development server:
+* Start the Vite development server:
 ```bash
 npm run dev
 ```
-* 4. Open http://localhost:5173 in your browser.
+* Open http://localhost:5173 in your browser.
 
 ---
 
