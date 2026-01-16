@@ -57,12 +57,12 @@ docker run -d --name shopping-db -p 27017:27017 mongo
 ```
 
 ### 3. Backend Setup
-* Navigate to the backend folder.
+* Navigate to the `backend` folder.
 * Install dependencies:
 ```bash
 npm install
 ```
-* Configure environment variables in a .env file:
+* Configure environment variables in a `.env` file:
 ```bash
 PORT=3000
 MONGO_URI=mongodb://localhost:27017/shoppinglist
@@ -73,7 +73,7 @@ npm run dev
 ```
 
 ### 4. Frontend Setup
-* Navigate to the frontend folder.
+* Navigate to the `frontend` folder.
 * Install dependencies:
 ```bash
 npm install
@@ -88,22 +88,22 @@ npm run dev
 
 ## 🧠 Key Architecture Decisions
 ### Clean Controller Logic
-The backend utilizes a custom asyncHandler higher-order function. This eliminates the need for repetitive try-catch blocks, ensuring that all asynchronous errors are automatically passed to the Express error-handling middleware.
+The backend utilizes a custom `asyncHandler` higher-order function. This eliminates the need for repetitive `try-catch` blocks, ensuring that all asynchronous errors are automatically passed to the Express error-handling middleware.
 
 ### Strict Type Safety
-I used shared TypeScript interfaces (see models/shoppingItem.ts) across the stack. This ensures that the data structure sent by the Express API matches exactly what the React components expect.
+I used shared TypeScript interfaces (see `models/shoppingItem.ts`) across the stack. This ensures that the data structure sent by the Express API matches exactly what the React components expect.
 
 ### Robust API Design
-* **Validation Middleware:** The updateItemStatus route uses a specific validateBoughtStatus middleware to ensure data integrity before reaching the database.
+* **Validation Middleware:** The `updateItemStatus` route uses a specific `validateBoughtStatus` middleware to ensure data integrity before reaching the database.
 
-* **Service Layer:** The frontend logic is decoupled from the components into itemService.ts, making the code easier to test and maintain.
+* **Service Layer:** The frontend logic is decoupled from the components into `itemService.ts`, making the code easier to test and maintain.
 
 ### Responsive UI
-The application features a mobile-first design strategy. Using App.css, the container adapts from a centered paper-style layout on desktop to a full-screen experience on mobile devices.
+The application features a mobile-first design strategy. Using `App.css`, the container adapts from a centered paper-style layout on desktop to a full-screen experience on mobile devices.
 
 ---
 
 ## 📬 Contact
-**Raphaela Multhaup** Portfolio | LinkedIn | GitHub
+**Raphaela Multhaup** [Portfolio](https://raphaela-multhaup.de/) | [LinkedIn](https://www.linkedin.com/in/raphaela-multhaup-096aba353/) | [GitHub](https://github.com/RaphaelaMulthaup)
 
-Email: kontakt@raphaela-multhaup.de
+Email: [kontakt@raphaela-multhaup.de](mailto:kontakt@raphaela-multhaup.de)
