@@ -65,7 +65,7 @@ function App() {
           onToggle={handleToggle}
           onDelete={handleDelete}
         />
-      </div>doc and clean code ShoppingListItem.tsx
+      </div>
       <AddItemForm onItemAdded={loadItems} />
     </Container>
   );
